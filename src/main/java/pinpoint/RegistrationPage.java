@@ -28,4 +28,5 @@ public class RegistrationPage {
         Assert.assertEquals(actualTitle, expectedTitle);
         driver.close();
     }
+
 }
