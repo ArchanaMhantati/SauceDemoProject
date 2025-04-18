@@ -23,6 +23,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/v1/");
     }
+
     @AfterMethod
     public void tearDown() {
         driver.quit();

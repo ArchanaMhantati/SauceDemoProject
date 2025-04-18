@@ -7,7 +7,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class ExtentReportManager implements ITestListener {
+public class ExtentReportManager implements ITestListener{
     private static ExtentReports extent;
     private static ExtentTest test;
 

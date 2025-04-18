@@ -21,7 +21,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @Listeners(ExtentReportManager.class)
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest{
 
 
     @DataProvider(name = "loginData")
