@@ -17,26 +17,29 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+
 @Listeners(ExtentReportManager.class)
 public class LoginTest extends BaseTest {
 
 
-        @DataProvider(name = "loginData")
-        public Object[][] loginDataProvider() {
-            return ExcelUtils.getLoginData("F:\\Project\\src\\main\\java\\saucedmoProject\\Data.xlsx", "Sheet1");
-        }
+    @DataProvider(name = "loginData")
+    public Object[][] loginDataProvider() {
+        return ExcelUtils.getLoginData("F:\\Project\\src\\main\\java\\saucedmoProject\\Data.xlsx", "Sheet1");
+    }
 
-        @Test(priority = 1, dataProvider = "loginData")
-        public void verifyLogin(String username, String password) {
-            driver.findElement(By.id("user-name")).sendKeys(username);
-            driver.findElement(By.id("password")).sendKeys(password);
-            driver.findElement(By.id("login-button")).click();
+    @Test(priority = 1, dataProvider = "loginData")
+    public void verifyLogin(String username, String password) {
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
 
-            // Assertion: Check if the homepage loaded
-            boolean isDisplayed = driver.findElement(By.className("product_label")).isDisplayed();
-            Assert.assertTrue(isDisplayed, "Homepage not loaded for: " + username);
-        }
+        // Assertion: Check if the homepage loaded
+        boolean isDisplayed = driver.findElement(By.className("product_label")).isDisplayed();
+        Assert.assertTrue(isDisplayed, "Homepage not loaded for: " + username);
+    }
+
     @Test(priority = 2)
     public void testProductFilteringLowToHigh() {
         verifyLogin("standard_user", "secret_sauce");
@@ -50,6 +53,7 @@ public class LoginTest extends BaseTest {
             System.out.println(product.getText());
         }
     }
+
     @Test(priority = 3)
     public void testAddToCart() throws InterruptedException {
         verifyLogin("standard_user", "secret_sauce");
@@ -67,7 +71,7 @@ public class LoginTest extends BaseTest {
 
         String actualCartBadgeText = cartBadge1.getText();
         String expected = "1";
-        Assert.assertEquals(actualCartBadgeText,expected);
+        Assert.assertEquals(actualCartBadgeText, expected);
         WebElement cartBadge = driver.findElement(By.xpath("//div[@id='shopping_cart_container']"));
         cartBadge.click();
 
@@ -78,6 +82,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualProductName, expectedProductName);
 
     }
+
     @Test(priority = 4)
     public void testCheckoutProcess() {
         verifyLogin("standard_user", "secret_sauce");
